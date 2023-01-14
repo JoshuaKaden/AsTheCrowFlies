@@ -11,10 +11,7 @@ import SwiftUI
 struct MapView: NSViewRepresentable {
     typealias NSViewType = MKMapView
     
-    @ObservedObject var viewModel: MapViewModel
-    @State var region: MKCoordinateRegion = Self.defaultRegion
-    
-    // MARK: - Static properties
+    let viewModel: CrowViewModel
     
     static let defaultRegion: MKCoordinateRegion = MKCoordinateRegion(
         center: Self.massGeneralCoordinate2D,
@@ -32,11 +29,13 @@ struct MapView: NSViewRepresentable {
     func makeNSView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
         mapView.region = Self.defaultRegion
+        mapView.addAnnotations(viewModel.placemarks)
         return mapView
     }
 
     func updateNSView(_ nsView: MKMapView, context: Context) {
-        // no op
+        mapView.removeAnnotations(viewModel.previousPlacemarks)
+        mapView.addAnnotations(viewModel.placemarks)
     }
 
     func makeCoordinator() -> Coordinator {
@@ -63,6 +62,10 @@ struct MapView: NSViewRepresentable {
             let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
             parent.viewModel.didClickCoordinate(coordinate)
         }
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            return MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: String(describing: annotation.coordinate))
+        }
     }
 
 }
@@ -71,6 +74,6 @@ struct MapView: NSViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(viewModel: MapViewModel())
+        MapView(viewModel: CrowViewModel())
     }
 }
