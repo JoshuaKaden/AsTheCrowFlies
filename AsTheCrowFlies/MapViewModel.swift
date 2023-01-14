@@ -6,10 +6,16 @@
 //
 
 import Foundation
-import MapKit
+import CoreLocation
 
 final class MapViewModel: ObservableObject {
+    private let geocoder = CLGeocoder()
+    
     func didClickCoordinate(_ coordinate: CLLocationCoordinate2D) {
-        print("*** \(coordinate) ***")
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            let addressCoordinate = placemarks?.first
+            print("*** \(addressCoordinate) ***")
+        }
     }
 }
