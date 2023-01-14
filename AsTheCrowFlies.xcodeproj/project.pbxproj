@@ -12,6 +12,7 @@
 		772D5FFB29732AAA007702ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 772D5FFA29732AAA007702ED /* Assets.xcassets */; };
 		772D5FFF29732AAA007702ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 772D5FFE29732AAA007702ED /* Preview Assets.xcassets */; };
 		77D05B6329732C4E00582771 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6229732C4E00582771 /* MapView.swift */; };
+		77D05B6529734A2600582771 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6429734A2600582771 /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		772D5FFC29732AAA007702ED /* AsTheCrowFlies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsTheCrowFlies.entitlements; sourceTree = "<group>"; };
 		772D5FFE29732AAA007702ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77D05B6229732C4E00582771 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		77D05B6429734A2600582771 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				772D5FF629732AA9007702ED /* AsTheCrowFliesApp.swift */,
 				772D5FF829732AA9007702ED /* ContentView.swift */,
 				77D05B6229732C4E00582771 /* MapView.swift */,
+				77D05B6429734A2600582771 /* MapViewModel.swift */,
 				772D5FFA29732AAA007702ED /* Assets.xcassets */,
 				772D5FFC29732AAA007702ED /* AsTheCrowFlies.entitlements */,
 				772D5FFD29732AAA007702ED /* Preview Content */,
@@ -145,6 +148,7 @@
 				772D5FF929732AA9007702ED /* ContentView.swift in Sources */,
 				77D05B6329732C4E00582771 /* MapView.swift in Sources */,
 				772D5FF729732AA9007702ED /* AsTheCrowFliesApp.swift in Sources */,
+				77D05B6529734A2600582771 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

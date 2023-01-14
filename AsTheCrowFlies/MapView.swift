@@ -11,8 +11,7 @@ import SwiftUI
 struct MapView: NSViewRepresentable {
     typealias NSViewType = MKMapView
     
-    // MARK: - State Variables
-    
+    @ObservedObject var viewModel: MapViewModel
     @State var region: MKCoordinateRegion = Self.defaultRegion
     
     // MARK: - Static properties
@@ -52,17 +51,17 @@ struct MapView: NSViewRepresentable {
         init(_ parent: MapView) {
             self.parent = parent
             super.init()
-            self.gRecognizer = NSClickGestureRecognizer(target: self, action: #selector(tapHandler))
+            self.gRecognizer = NSClickGestureRecognizer(target: self, action: #selector(clickHandler))
             self.gRecognizer.delegate = self
             self.parent.mapView.addGestureRecognizer(gRecognizer)
         }
 
-        @objc func tapHandler(_ gesture: NSClickGestureRecognizer) {
+        @objc func clickHandler(_ gesture: NSClickGestureRecognizer) {
             // position on the screen, CGPoint
             let location = gRecognizer.location(in: self.parent.mapView)
             // position on the map, CLLocationCoordinate2D
             let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
-            print(coordinate)
+            parent.viewModel.didClickCoordinate(coordinate)
         }
     }
 
@@ -72,6 +71,6 @@ struct MapView: NSViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(viewModel: MapViewModel())
     }
 }
