@@ -29,6 +29,7 @@ struct MapView: NSViewRepresentable {
     func makeNSView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
         mapView.region = Self.defaultRegion
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "MARKER")
         mapView.addAnnotations(viewModel.placemarks)
         return mapView
     }
@@ -64,7 +65,7 @@ struct MapView: NSViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            return MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: String(describing: annotation.coordinate))
+            return MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MARKER")
         }
     }
 
