@@ -8,7 +8,9 @@
 import MapKit
 import SwiftUI
 
-struct MapView: View {
+struct MapView: NSViewRepresentable {
+    typealias NSViewType = MKMapView
+    
     // MARK: - State Variables
     
     @State var region: MKCoordinateRegion = Self.defaultRegion
@@ -22,15 +24,48 @@ struct MapView: View {
     
     static let massGeneralCoordinate2D = CLLocationCoordinate2D(latitude: 42.362957, longitude: -71.068642)
     
-    // MARK: - Body
+    // MARK: - Private Properties
     
-    var body: some View {
-        Map(coordinateRegion: $region)
-            .navigationTitle("As The Crow Flies")
-            .onTapGesture { location in
-              print("Tapped at \(location)")
-            }
+    private let mapView = MKMapView()
+    
+    // MARK: - NSViewRepresentable
+    
+    func makeNSView(context: Context) -> MKMapView {
+        mapView.delegate = context.coordinator
+        mapView.region = Self.defaultRegion
+        return mapView
     }
+
+    func updateNSView(_ nsView: MKMapView, context: Context) {
+        // no op
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(self)
+    }
+
+    class Coordinator: NSObject, MKMapViewDelegate, NSGestureRecognizerDelegate {
+        var parent: MapView
+
+        var gRecognizer = NSClickGestureRecognizer()
+
+        init(_ parent: MapView) {
+            self.parent = parent
+            super.init()
+            self.gRecognizer = NSClickGestureRecognizer(target: self, action: #selector(tapHandler))
+            self.gRecognizer.delegate = self
+            self.parent.mapView.addGestureRecognizer(gRecognizer)
+        }
+
+        @objc func tapHandler(_ gesture: NSClickGestureRecognizer) {
+            // position on the screen, CGPoint
+            let location = gRecognizer.location(in: self.parent.mapView)
+            // position on the map, CLLocationCoordinate2D
+            let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
+            print(coordinate)
+        }
+    }
+
 }
 
 // MARK: - Previews
