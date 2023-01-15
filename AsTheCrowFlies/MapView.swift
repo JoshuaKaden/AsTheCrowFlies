@@ -12,14 +12,7 @@ struct MapView: NSViewRepresentable {
     typealias NSViewType = MKMapView
     
     let viewModel: CrowViewModel
-    
-    static let defaultRegion: MKCoordinateRegion = MKCoordinateRegion(
-        center: Self.massGeneralCoordinate2D,
-        latitudinalMeters: 750,
-        longitudinalMeters: 750)
-    
-    static let massGeneralCoordinate2D = CLLocationCoordinate2D(latitude: 42.362957, longitude: -71.068642)
-    
+        
     // MARK: - Private Properties
     
     private let mapView = MKMapView()
@@ -28,8 +21,9 @@ struct MapView: NSViewRepresentable {
     
     func makeNSView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
-        mapView.region = Self.defaultRegion
+        mapView.region = CrowViewModel.defaultRegion
         mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "MARKER")
+        mapView.addAnnotation(viewModel.perchPlacemark)
         mapView.addAnnotations(viewModel.placemarks)
         return mapView
     }
@@ -71,7 +65,13 @@ struct MapView: NSViewRepresentable {
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MARKER")
-            annotationView.glyphTintColor = .black
+            if annotation.coordinate.latitude == CrowViewModel.massGeneralCoordinate2D.latitude && annotation.coordinate.longitude == CrowViewModel.massGeneralCoordinate2D.longitude {
+                annotationView.glyphTintColor = .white
+                annotationView.markerTintColor = .black
+            } else {
+                annotationView.glyphTintColor = .white
+                annotationView.markerTintColor = .blue
+            }
             return annotationView
         }
     }
