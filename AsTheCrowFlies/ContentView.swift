@@ -25,7 +25,7 @@ struct ContentView: View {
             }
             .padding()
             .navigationDestination(isPresented: $showMap) {
-                MapView()
+                CrowView(viewModel: CrowViewModel())
             }
         }
     }

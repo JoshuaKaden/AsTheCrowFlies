@@ -12,6 +12,8 @@
 		772D5FFB29732AAA007702ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 772D5FFA29732AAA007702ED /* Assets.xcassets */; };
 		772D5FFF29732AAA007702ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 772D5FFE29732AAA007702ED /* Preview Assets.xcassets */; };
 		77D05B6329732C4E00582771 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6229732C4E00582771 /* MapView.swift */; };
+		77D05B6529734A2600582771 /* CrowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6429734A2600582771 /* CrowViewModel.swift */; };
+		77D05B692973528900582771 /* CrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B682973528900582771 /* CrowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		772D5FFC29732AAA007702ED /* AsTheCrowFlies.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsTheCrowFlies.entitlements; sourceTree = "<group>"; };
 		772D5FFE29732AAA007702ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77D05B6229732C4E00582771 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		77D05B6429734A2600582771 /* CrowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowViewModel.swift; sourceTree = "<group>"; };
+		77D05B682973528900582771 /* CrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				772D5FF629732AA9007702ED /* AsTheCrowFliesApp.swift */,
 				772D5FF829732AA9007702ED /* ContentView.swift */,
+				77D05B682973528900582771 /* CrowView.swift */,
+				77D05B6429734A2600582771 /* CrowViewModel.swift */,
 				77D05B6229732C4E00582771 /* MapView.swift */,
 				772D5FFA29732AAA007702ED /* Assets.xcassets */,
 				772D5FFC29732AAA007702ED /* AsTheCrowFlies.entitlements */,
@@ -142,9 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77D05B692973528900582771 /* CrowView.swift in Sources */,
 				772D5FF929732AA9007702ED /* ContentView.swift in Sources */,
 				77D05B6329732C4E00582771 /* MapView.swift in Sources */,
 				772D5FF729732AA9007702ED /* AsTheCrowFliesApp.swift in Sources */,
+				77D05B6529734A2600582771 /* CrowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +274,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsTheCrowFlies/AsTheCrowFlies.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsTheCrowFlies/Preview Content\"";
@@ -291,10 +300,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chadford.AsTheCrowFlies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -304,6 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsTheCrowFlies/AsTheCrowFlies.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsTheCrowFlies/Preview Content\"";
@@ -329,10 +340,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chadford.AsTheCrowFlies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
