@@ -16,17 +16,21 @@ final class CrowViewModel: ObservableObject {
     
     func findPlacemarksFromCoordinate(_ coordinate: CLLocationCoordinate2D, completion: @escaping ([MKPlacemark]) -> Void) {
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
-            guard let self, let placemarks else {
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            guard let placemarks else {
+                completion([])
                 return
             }
-            self.previousPlacemarks = self.placemarks
-            self.placemarks.append(contentsOf: placemarks.map { MKPlacemark(placemark: $0) })
+            completion(placemarks.map { MKPlacemark(placemark: $0) })
         }
     }
     
     func appendPlacemarks(_ placemarks: [MKPlacemark]) {
         previousPlacemarks = self.placemarks
-        self.placemarks.append(contentsOf: placemarks)
+        for placemark in placemarks {
+            if self.placemarks.filter({ $0.title == placemark.title }).count == 0 {
+                self.placemarks.append(placemark)
+            }
+        }
     }
 }
