@@ -14,6 +14,9 @@
 		77D05B6329732C4E00582771 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6229732C4E00582771 /* MapView.swift */; };
 		77D05B6529734A2600582771 /* CrowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6429734A2600582771 /* CrowViewModel.swift */; };
 		77D05B692973528900582771 /* CrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B682973528900582771 /* CrowView.swift */; };
+		77D05B6B29749DED00582771 /* BostonBuildingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6A29749DED00582771 /* BostonBuildingClient.swift */; };
+		77D05B6D2974A12F00582771 /* BostonBuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6C2974A12F00582771 /* BostonBuildingModel.swift */; };
+		77D05B6F2974A4FA00582771 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D05B6E2974A4FA00582771 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		77D05B6229732C4E00582771 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		77D05B6429734A2600582771 /* CrowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowViewModel.swift; sourceTree = "<group>"; };
 		77D05B682973528900582771 /* CrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowView.swift; sourceTree = "<group>"; };
+		77D05B6A29749DED00582771 /* BostonBuildingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BostonBuildingClient.swift; sourceTree = "<group>"; };
+		77D05B6C2974A12F00582771 /* BostonBuildingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BostonBuildingModel.swift; sourceTree = "<group>"; };
+		77D05B6E2974A4FA00582771 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				77D05B682973528900582771 /* CrowView.swift */,
 				77D05B6429734A2600582771 /* CrowViewModel.swift */,
 				77D05B6229732C4E00582771 /* MapView.swift */,
+				77D05B6A29749DED00582771 /* BostonBuildingClient.swift */,
+				77D05B6C2974A12F00582771 /* BostonBuildingModel.swift */,
+				77D05B6E2974A4FA00582771 /* NetworkService.swift */,
 				772D5FFA29732AAA007702ED /* Assets.xcassets */,
 				772D5FFC29732AAA007702ED /* AsTheCrowFlies.entitlements */,
 				772D5FFD29732AAA007702ED /* Preview Content */,
@@ -149,7 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				77D05B692973528900582771 /* CrowView.swift in Sources */,
+				77D05B6B29749DED00582771 /* BostonBuildingClient.swift in Sources */,
+				77D05B6F2974A4FA00582771 /* NetworkService.swift in Sources */,
 				772D5FF929732AA9007702ED /* ContentView.swift in Sources */,
+				77D05B6D2974A12F00582771 /* BostonBuildingModel.swift in Sources */,
 				77D05B6329732C4E00582771 /* MapView.swift in Sources */,
 				772D5FF729732AA9007702ED /* AsTheCrowFliesApp.swift in Sources */,
 				77D05B6529734A2600582771 /* CrowViewModel.swift in Sources */,

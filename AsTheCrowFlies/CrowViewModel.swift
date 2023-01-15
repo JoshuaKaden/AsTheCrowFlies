@@ -15,14 +15,19 @@ final class CrowViewModel: ObservableObject {
         longitudinalMeters: 750)
     
     static let massGeneralCoordinate2D = CLLocationCoordinate2D(latitude: 42.362896, longitude: -71.069091)
-    
+
     @Published var perchPlacemark: MKPlacemark = MKPlacemark(coordinate: CrowViewModel.massGeneralCoordinate2D)
     @Published var placemarks: [MKPlacemark] = []
     private(set) var previousPlacemarks: [MKPlacemark] = []
     
     private let geocoder = CLGeocoder()
+    private let bostonClient = BostonBuildingClient()
     
     init() {
+        if let savedPlacemarks = UserDefaults.standard.object(forKey: "SavedPlacemarks") as? [MKPlacemark] {
+            self.placemarks = savedPlacemarks
+        }
+        
         findPlacemarksFromCoordinate(CrowViewModel.massGeneralCoordinate2D) { [weak self] placemarks in
             guard let placemark = placemarks.first else {
                 return
@@ -33,11 +38,20 @@ final class CrowViewModel: ObservableObject {
     
     func findPlacemarksFromCoordinate(_ coordinate: CLLocationCoordinate2D, completion: @escaping ([MKPlacemark]) -> Void) {
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard let placemarks else {
                 completion([])
                 return
             }
+            
+//            for placemark in placemarks {
+//                if let self, let postalAddress = placemark.postalAddress {
+//                    self.bostonClient.findBuilding(address: postalAddress.street, postalCode: postalAddress.postalCode) { model in
+//                        print(model)
+//                    }
+//                }
+//            }
+            
             completion(placemarks.map { MKPlacemark(placemark: $0) })
         }
     }
@@ -49,5 +63,7 @@ final class CrowViewModel: ObservableObject {
                 self.placemarks.append(placemark)
             }
         }
+        
+        UserDefaults.standard.set(self.placemarks, forKey: "SavedPlacemarks")
     }
 }
