@@ -14,9 +14,9 @@ struct CrowView: View {
     var body: some View {
         VStack {
             MapView(viewModel: viewModel)
-            List(viewModel.placemarks) { placemark in
-                Text(placemark.description)
-            }
+//            List(viewModel.placemarks) { placemark in
+//                Text(placemark.description)
+//            }
         }
     }
 }
