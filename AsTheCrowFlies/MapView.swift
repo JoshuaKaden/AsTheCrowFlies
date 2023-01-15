@@ -35,8 +35,8 @@ struct MapView: NSViewRepresentable {
     }
 
     func updateNSView(_ nsView: MKMapView, context: Context) {
-        mapView.removeAnnotations(viewModel.previousPlacemarks)
-        mapView.addAnnotations(viewModel.placemarks)
+        nsView.removeAnnotations(viewModel.previousPlacemarks)
+        nsView.addAnnotations(viewModel.placemarks)
     }
 
     func makeCoordinator() -> Coordinator {
@@ -61,11 +61,18 @@ struct MapView: NSViewRepresentable {
             let location = gRecognizer.location(in: self.parent.mapView)
             // position on the map, CLLocationCoordinate2D
             let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
-            parent.viewModel.didClickCoordinate(coordinate)
+            parent.viewModel.findPlacemarksFromCoordinate(coordinate) { [weak self] placemarks in
+                guard let parent = self?.parent else {
+                    return
+                }
+                parent.viewModel.appendPlacemarks(placemarks)
+            }
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            return MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MARKER")
+            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MARKER")
+            annotationView.glyphTintColor = .black
+            return annotationView
         }
     }
 
